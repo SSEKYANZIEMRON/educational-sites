@@ -1,0 +1,70 @@
+/* Basic Reset */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+  background-color: #0044cc;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Sections */
+section {
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+form input, form textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+form button {
+  background-color: #0044cc;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #003399;
+}
+
+/* Quiz Styling */
+#quiz {
+  padding: 20px;
+  background-color: #f0f8ff;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+#quiz h2 {
+  margin-top: 0;
+}
