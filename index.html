@@ -2,39 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>EduSite - Fun Learning!</title>
+  <title>My Educational Website</title>
   <link rel="stylesheet" href="style.css">
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
+      margin: 0;
+      background: #fdf6f0;
       color: #333;
     }
 
     nav {
-      background: linear-gradient(45deg, #4facfe, #00f2fe);
-      padding: 15px;
+      background-color: #0077cc;
       color: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      padding: 15px;
+      text-align: center;
     }
 
     nav h1 {
       margin: 0;
-      font-size: 24px;
-      display: inline-block;
+      font-size: 2rem;
     }
 
     nav ul {
-      display: inline-block;
-      list-style: none;
+      list-style-type: none;
       padding: 0;
-      margin-left: 20px;
+      margin-top: 10px;
     }
 
     nav ul li {
       display: inline-block;
-      margin-right: 15px;
+      margin: 0 10px;
     }
 
     nav ul li a {
@@ -43,65 +41,45 @@
       font-weight: bold;
     }
 
-    nav ul li a:hover {
-      text-decoration: underline;
-    }
-
     section {
-      padding: 40px 20px;
-      border-bottom: 5px solid #eee;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
-    #home {
-      background-color: #ffecd2;
+    h2 {
+      color: #0077cc;
     }
 
-    #about {
-      background-color: #d2f8ff;
+    .quiz {
+      background-color: #e0f7fa;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
 
-    #lessons {
-      background-color: #e0ffd8;
-    }
-
-    #quizzes {
-      background-color: #fdd7fa;
-    }
-
-    #contact {
-      background-color: #fff7d6;
-    }
-
-    button, input[type="submit"] {
+    form button {
       background-color: #4CAF50;
       color: white;
+      padding: 8px 15px;
       border: none;
-      padding: 10px 15px;
       border-radius: 5px;
       cursor: pointer;
-      font-weight: bold;
-    }
-
-    button:hover {
-      background-color: #45a049;
     }
 
     input, textarea {
       padding: 10px;
       margin: 8px 0;
-      border-radius: 5px;
       border: 1px solid #ccc;
-      width: 100%;
-      box-sizing: border-box;
+      border-radius: 5px;
+      width: 90%;
     }
 
-    .quiz {
-      background: white;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    button[type="submit"] {
+      background-color: #0077cc;
+      color: white;
     }
 
     /* Chatbot Style */
@@ -111,67 +89,147 @@
       right: 20px;
       width: 350px;
       height: 500px;
-      border: 2px solid #00c9a7;
-      border-radius: 15px;
-      background-color: #e0fff9;
-      box-shadow: 0 0 15px rgba(0, 201, 167, 0.4);
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     #chat-box {
       padding: 10px;
       height: 400px;
       overflow-y: auto;
-      font-family: monospace;
+      background-color: #f9f9f9;
     }
 
     #chat-input {
       width: calc(100% - 20px);
       padding: 10px;
-      border: 1px solid #00c9a7;
+      border: 1px solid #ccc;
       border-radius: 5px;
-      margin-bottom: 5px;
+      margin: 10px;
     }
 
     #send-btn {
-      width: 100%;
+      width: 90%;
+      margin: 0 5%;
       padding: 10px;
-      background-color: #00c9a7;
+      background-color: #ff9800;
       border: none;
       color: white;
       border-radius: 5px;
-      font-weight: bold;
       cursor: pointer;
     }
 
-    #send-btn:hover {
-      background-color: #00a98e;
+    .user-msg, .ai-msg {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 5px;
     }
 
     .user-msg {
-      background-color: #d0ffe3;
+      background-color: #d1f0ff;
       text-align: right;
-      border-radius: 10px;
-      padding: 8px;
-      margin: 4px;
     }
 
     .ai-msg {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 8px;
-      margin: 4px;
+      background-color: #f1f1f1;
     }
   </style>
 </head>
 <body>
 
-  <!-- Keep your existing HTML content here -->
+  <!-- Search Form -->
+  <form action="https://www.google.com/search" method="GET" target="_blank" style="text-align: center; margin: 20px;">
+    <input type="text" name="q" placeholder="Search the web...">
+    <button type="submit">Search</button>
+  </form>
 
-  <!-- Example of one section to demonstrate style -->
+  <!-- Navigation Bar -->
+  <nav>
+    <h1>EduSite</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#lessons">Lessons</a></li>
+      <li><a href="#quizzes">Quizzes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
   <section id="home">
     <h2>Welcome to EduSite!</h2>
     <p>Learn something new every day. Explore free lessons and quizzes.</p>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>We make learning fun and easy for everyone.</p>
+  </section>
+
+  <!-- Lessons Section -->
+  <section id="lessons">
+    <h2>Free Lessons</h2>
+    <ul>
+      <li><strong>Math Basics:</strong> Addition, subtraction, and more</li>
+      <li><strong>Science Facts:</strong> Learn how the world works</li>
+      <li><strong>English Skills:</strong> Grammar, writing, and reading</li>
+      <li><strong>Computer Skills:</strong> Hardware, applications, internet</li>
+    </ul>
+  </section>
+
+  <!-- Quizzes Section -->
+  <section id="quizzes">
+    <h2>Take a Quiz</h2>
+
+    <div class="quiz" id="quiz-computer">
+      <h3>Computer Quiz</h3>
+      <p><strong>What does "CPU" stand for?</strong></p>
+      <form>
+        <label><input type="radio" name="q1" value="a"> Central Processing Unit</label><br>
+        <label><input type="radio" name="q1" value="b"> Computer Personal Unit</label><br>
+        <label><input type="radio" name="q1" value="c"> Central Power Utility</label><br>
+        <button type="button" onclick="checkAnswer('q1', 'a', 'result1')">Submit</button>
+      </form>
+      <p id="result1"></p>
+    </div>
+
+    <div class="quiz" id="quiz-math">
+      <h3>Math Quiz</h3>
+      <p><strong>What is 7 + 5?</strong></p>
+      <form>
+        <label><input type="radio" name="q2" value="a"> 10</label><br>
+        <label><input type="radio" name="q2" value="b"> 12</label><br>
+        <label><input type="radio" name="q2" value="c"> 14</label><br>
+        <button type="button" onclick="checkAnswer('q2', 'b', 'result2')">Submit</button>
+      </form>
+      <p id="result2"></p>
+    </div>
+
+    <div class="quiz" id="quiz-science">
+      <h3>Science Quiz</h3>
+      <p><strong>What planet is known as the Red Planet?</strong></p>
+      <form>
+        <label><input type="radio" name="q3" value="a"> Jupiter</label><br>
+        <label><input type="radio" name="q3" value="b"> Earth</label><br>
+        <label><input type="radio" name="q3" value="c"> Mars</label><br>
+        <button type="button" onclick="checkAnswer('q3', 'c', 'result3')">Submit</button>
+      </form>
+      <p id="result3"></p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form action="https://formspree.io/f/xzzrdkjk" method="POST">
+      <input type="text" name="name" placeholder="Your name" required><br>
+      <input type="email" name="email" placeholder="Your email" required><br>
+      <textarea name="message" placeholder="Your message" required></textarea><br>
+      <button type="submit">Send</button>
+    </form>
   </section>
 
   <!-- Chatbot Section -->
@@ -207,6 +265,7 @@
     async function sendMessage() {
       const userMessage = document.getElementById('chat-input').value;
       if (!userMessage.trim()) return;
+
       addMessageToChatBox(userMessage, 'user');
       document.getElementById('chat-input').value = '';
 
@@ -221,10 +280,11 @@
 
         const data = await response.json();
         const botReply = data.reply || "Sorry, I couldn't process that.";
+
         addMessageToChatBox(botReply, 'ai');
       } catch (error) {
         console.error('Error:', error);
-        addMessageToChatBox("Oops! Something went wrong.", 'ai');
+        addMessageToChatBox("Error occurred while fetching response from the AI.", 'ai');
       }
     }
 
@@ -237,6 +297,5 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     }
   </script>
-
 </body>
 </html>
