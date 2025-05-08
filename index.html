@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title> Ssekyanzi Emron education site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ssekyanzi Emron Education Site</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -10,12 +11,12 @@
   <nav>
     <h1>EduSite</h1>
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#lessons">Lessons</a></li>
-      <li><a href="#quizzes">Quizzes</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#chatbot">Chatbot</a></li>
+      <li><a href="#home" aria-label="Go to Home section">Home</a></li>
+      <li><a href="#about" aria-label="Go to About section">About</a></li>
+      <li><a href="#lessons" aria-label="Go to Lessons section">Lessons</a></li>
+      <li><a href="#quizzes" aria-label="Go to Quizzes section">Quizzes</a></li>
+      <li><a href="#contact" aria-label="Go to Contact section">Contact</a></li>
+      <li><a href="#chatbot" aria-label="Go to Chatbot section">Chatbot</a></li>
     </ul>
   </nav>
 
@@ -53,15 +54,15 @@
   <!-- Quizzes Section -->
   <section id="quizzes">
     <h2>Take a Quiz</h2>
-    <!-- Quizzes content here -->
+    <p>Quizzes coming soon!</p>
   </section>
 
   <!-- Contact Section -->
   <section id="contact">
     <h2>Contact Us</h2>
     <form action="https://formspree.io/f/xzzrdkjk" method="POST">
-      <input type="email" name="email" placeholder="Your Email" required><br>
-      <textarea name="message" placeholder="Your Message" required></textarea><br>
+      <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email"><br>
+      <textarea name="message" placeholder="Your Message" required aria-label="Your Message"></textarea><br>
       <button type="submit">Send</button>
     </form>
   </section>
@@ -71,30 +72,33 @@
     <h2>AI Chatbot</h2>
     <div id="chat-window">
       <div id="chat-output"></div>
-      <input type="text" id="chat-input" placeholder="Ask me anything..." />
+      <input type="text" id="chat-input" placeholder="Ask me anything..." aria-label="Chatbot input">
       <button onclick="sendMessage()">Send</button>
     </div>
   </section>
 
   <script>
     async function sendMessage() {
-      const userInput = document.getElementById('chat-input').value;
+      const userInput = document.getElementById('chat-input').value.trim();
+      const chatOutput = document.getElementById('chat-output');
+
       if (!userInput) {
         alert("Please enter a message!");
         return;
       }
 
-      const chatOutput = document.getElementById('chat-output');
       chatOutput.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
 
       try {
-        const response = await fetch('/api/chatbot', { // Calls your backend API
+        const response = await fetch('/api/chatbot', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: userInput })
         });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
         const data = await response.json();
         if (data.reply) {
