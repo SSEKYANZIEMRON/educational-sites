@@ -1,70 +1,130 @@
-/* Basic Reset */
+/* General Styles */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  line-height: 1.6;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+  color: #333;
 }
 
-/* Navbar */
+h1, h2, h3 {
+  color: #ff5722;
+}
+
+/* Navigation */
 nav {
-  background-color: #0044cc;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  padding: 1em;
   color: white;
-  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+nav h1 {
+  margin: 0;
+  font-size: 1.5em;
+  color: white;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 15px;
-  margin: 0;
+  gap: 1em;
 }
 
-nav a {
+nav ul li a {
   color: white;
   text-decoration: none;
+  font-weight: bold;
 }
 
-nav a:hover {
+nav ul li a:hover {
   text-decoration: underline;
 }
 
 /* Sections */
 section {
-  padding: 20px;
-  border-bottom: 1px solid #ccc;
-}
-
-form input, form textarea {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-form button {
-  background-color: #0044cc;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-}
-
-form button:hover {
-  background-color: #003399;
-}
-
-/* Quiz Styling */
-#quiz {
-  padding: 20px;
-  background-color: #f0f8ff;
-  margin-top: 20px;
+  padding: 2em;
+  background: #ffffff;
+  margin: 1em auto;
   border-radius: 10px;
+  width: 90%;
+  max-width: 900px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
-#quiz h2 {
-  margin-top: 0;
+section:nth-child(even) {
+  background: #f0f9ff;
+}
+
+.tutorial {
+  background: #fff8e1;
+  border-left: 5px solid #ffc107;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 8px;
+}
+
+/* Buttons and Inputs */
+button {
+  background: #4caf50;
+  color: white;
+  padding: 0.7em 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #45a049;
+}
+
+input, textarea {
+  width: 90%;
+  padding: 0.6em;
+  margin: 0.5em 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Chatbot */
+#chat-window {
+  background: #f3f4f6;
+  padding: 1em;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#chat-output {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 1em;
+}
+
+/* Loading screen animation (optional improvement) */
+#loading-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+  font-size: 2em;
+  animation: fadeOut 2s 2s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
