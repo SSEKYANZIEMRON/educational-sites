@@ -53,48 +53,62 @@
   <!-- Quizzes Section -->
   <section id="quizzes">
     <h2>Take a Quiz</h2>
-    
-    <!-- Computer Quiz -->
-    <div class="quiz" id="quiz-computer">
-      <h3>Computer Quiz</h3>
-      <p><strong>What does "CPU" stand for?</strong></p>
-      <form>
-        <label><input type="radio" name="q1" value="a"> Central Processing Unit</label><br>
-        <label><input type="radio" name="q1" value="b"> Computer Personal Unit</label><br>
-        <label><input type="radio" name="q1" value="c"> Central Power Utility</label><br>
-        <button type="button" onclick="checkAnswer('q1', 'a', 'result1')">Submit</button>
-      </form>
-      <p id="result1"></p>
-    </div>
-
-    <!-- Math Quiz -->
-    <div class="quiz" id="quiz-math">
-      <h3>Math Quiz</h3>
-      <p><strong>What is 7 + 5?</strong></p>
-      <form>
-        <label><input type="radio" name="q2" value="a"> 10</label><br>
-        <label><input type="radio" name="q2" value="b"> 12</label><br>
-        <label><input type="radio" name="q2" value="c"> 14</label><br>
-        <button type="button" onclick="checkAnswer('q2', 'b', 'result2')">Submit</button>
-      </form>
-      <p id="result2"></p>
-    </div>
-
-    <!-- Science Quiz -->
-    <div class="quiz" id="quiz-science">
-      <h3>Science Quiz</h3>
-      <p><strong>What planet is known as the Red Planet?</strong></p>
-      <form>
-        <label><input type="radio" name="q3" value="a"> Jupiter</label><br>
-        <label><input type="radio" name="q3" value="b"> Earth</label><br>
-        <label><input type="radio" name="q3" value="c"> Mars</label><br>
-        <button type="button" onclick="checkAnswer('q3', 'c', 'result3')">Submit</button>
-      </form>
-      <p id="result3"></p>
-    </div>
+    <!-- Quizzes content here -->
   </section>
 
   <!-- Contact Section -->
   <section id="contact">
     <h2>Contact Us</h2>
-    <form action="https://formspree.io/f/xzzrdkjk" method="
+    <form action="https://formspree.io/f/xzzrdkjk" method="POST">
+      <input type="email" name="email" placeholder="Your Email" required><br>
+      <textarea name="message" placeholder="Your Message" required></textarea><br>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- AI Chatbot Section -->
+  <section id="chatbot">
+    <h2>AI Chatbot</h2>
+    <div id="chat-window">
+      <div id="chat-output"></div>
+      <input type="text" id="chat-input" placeholder="Ask me anything..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </section>
+
+  <script>
+    async function sendMessage() {
+      const userInput = document.getElementById('chat-input').value;
+      if (!userInput) {
+        alert("Please enter a message!");
+        return;
+      }
+
+      const chatOutput = document.getElementById('chat-output');
+      chatOutput.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+
+      try {
+        const response = await fetch('/api/chatbot', { // Calls your backend API
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ message: userInput })
+        });
+
+        const data = await response.json();
+        if (data.reply) {
+          chatOutput.innerHTML += `<p><strong>AI:</strong> ${data.reply}</p>`;
+        } else {
+          throw new Error('No reply from AI');
+        }
+      } catch (error) {
+        chatOutput.innerHTML += `<p><strong>AI:</strong> Sorry, something went wrong. Please try again later.</p>`;
+        console.error(error);
+      }
+
+      document.getElementById('chat-input').value = '';
+    }
+  </script>
+</body>
+</html>
