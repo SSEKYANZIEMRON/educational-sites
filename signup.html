@@ -1,49 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 30px;
+      color: #fff;
+      font-size: 36px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Form Styles */
+    form {
+      width: 300px;
+      margin: 50px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background-color: #ff7e5f;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #feb47b;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 600px) {
+      form {
+        width: 90%;
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Sign Up</h1>
+  <h1>Welcome to Ssekyanzi Emron Education Sites!</h1>
   <form id="signup-form">
-    <input type="email" id="user-email" placeholder="Enter your email" required />
+    <input type="email" id="user-email" placeholder="Enter your email" required>
     <button type="submit">Sign Up</button>
   </form>
 
   <script>
-    // Initialize EmailJS
     (function() {
-      emailjs.init("sDsoRVNsCBzHleFl6"); // Your EmailJS Public Key
+      emailjs.init("sDsoRVNsCBzHleFl6");  // Replace with your User ID from EmailJS
     })();
 
-    // Handle Form Submission
     document.getElementById('signup-form').addEventListener('submit', function(event) {
       event.preventDefault();
 
-      const userEmail = document.getElementById('user-email').value;
-      const verificationCode = generateVerificationCode();
+      var userEmail = document.getElementById('user-email').value;
+      var verificationCode = generateVerificationCode();  // Generate a random 6-digit code
 
-      // Send the specific message
+      // Send email using EmailJS
       emailjs.send("service_glhjxqk", "template_rvy4jir", {
         email: userEmail,
-        code: verificationCode,
-        message: `Welcome to ssekyanzi emron education sites! Your verification code is: ${verificationCode}`
+        code: verificationCode,  // Send the verification code
       })
       .then(function(response) {
+        console.log('SUCCESS!', response);
         alert("A verification code has been sent to your email.");
-        console.log("SUCCESS!", response);
       }, function(error) {
-        alert("Oops! Something went wrong.");
-        console.error("FAILED...", error);
+        console.log('FAILED...', error);
       });
     });
 
-    // Code Generator
     function generateVerificationCode() {
-      return Math.floor(100000 + Math.random() * 900000); // 6-digit code
+      return Math.floor(100000 + Math.random() * 900000);  // Generates a 6-digit code
     }
   </script>
 </body>
