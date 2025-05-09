@@ -44,9 +44,37 @@
 <body>
   <h1>Sign Up</h1>
   <form id="signup-form">
-    <label for="user-email">Email:</label>
-    <input type="email" id="user-email" placeholder="Enter your email" required />
+    <label for="user-email">Email:</label><br>
+    <input type="email" id="user-email" placeholder="Enter your email" required /><br>
     <button type="submit" id="submit-button">Sign Up</button>
   </form>
-  <div class="alert" id="notification"
-
+  <div class="alert" id="notification">A verification code has been sent to your email.</div>
+
+  <script>
+    // Initialize EmailJS with your public key
+    emailjs.init("sDsoRVNsCBzHleFl6");
+
+    // Handle the form submission
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const userEmail = document.getElementById('user-email').value;
+      const verificationCode = Math.floor(100000 + Math.random() * 900000);
+
+      // Send the email using EmailJS
+      emailjs.send("service_glhjxqk", "template_rvy4jir", {
+        email: userEmail,
+        code: verificationCode
+      })
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        document.getElementById('notification').style.display = 'block';
+        document.getElementById('submit-button').disabled = true;
+      }, function(error) {
+        console.error('FAILED...', error);
+        alert("Failed to send email. Please check your template and service ID.");
+      });
+    });
+  </script>
+</body>
+</html>
