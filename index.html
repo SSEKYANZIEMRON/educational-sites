@@ -1,38 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ssekyanzi Emron Education Site</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Google Custom Search Engine Script -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduSite - Learn with Fun</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <script async src="https://cse.google.com/cse.js?cx=54605d62dc8fe49aa"></script>
+  <style>
+    /* Add custom styles here or in your style.css */
+    nav {
+      background: #0074D9;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    nav h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .notification .fas.fa-bell {
+      font-size: 20px;
+    }
+
+    .notification .badge {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background: red;
+      color: white;
+      font-size: 10px;
+      padding: 2px 5px;
+      border-radius: 50%;
+    }
+
+    section {
+      padding: 2rem;
+    }
+
+    #chat-window {
+      max-width: 400px;
+    }
+
+    input, textarea, button {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-
-  <!-- Loading Screen -->
-  <div id="loading-screen">
-    <div class="stars"></div>
-    <div class="stars2"></div>
-    <div class="stars3"></div>
-    <h1>Loading...</h1>
-  </div>
 
   <!-- Navigation Bar -->
   <nav>
     <h1>EduSite</h1>
     <ul>
-      <li><a href="#home" aria-label="Go to Home section">Home</a></li>
-      <li><a href="#about" aria-label="Go to About section">About</a></li>
-      <li><a href="#lessons" aria-label="Go to Lessons section">Lessons</a></li>
-      <li><a href="#quizzes" aria-label="Go to Quizzes section">Quizzes</a></li>
-      <li><a href="tutorials.html" aria-label="Go to Tutorials page">Tutorials</a></li> <!-- Link to Tutorials Page -->
-      <li><a href="#contact" aria-label="Go to Contact section">Contact</a></li>
-      <li><a href="#chatbot" aria-label="Go to Chatbot section">Chatbot</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#lessons">Lessons</a></li>
+      <li><a href="quizzes.html">Quizzes</a></li>
+      <li><a href="tutorials.html">Tutorials</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#chatbot">Chatbot</a></li>
+      <li class="notification">
+        <a href="#" aria-label="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="badge">3</span>
+        </a>
+      </li>
     </ul>
   </nav>
 
-  <!-- Search Box Section -->
+  <!-- Search Section -->
   <section id="search-box">
     <h2>Search Our Site</h2>
     <div class="gcse-search"></div>
@@ -61,28 +117,22 @@
     </ul>
   </section>
 
-  <!-- Quizzes Section -->
-  <section id="quizzes">
-    <h2>Take a Quiz</h2>
-    <p>Quizzes coming soon!</p>
-  </section>
-
   <!-- Contact Section -->
   <section id="contact">
     <h2>Contact Us</h2>
     <form action="https://formspree.io/f/xzzrdkjk" method="POST">
-      <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email"><br>
-      <textarea name="message" placeholder="Your Message" required aria-label="Your Message"></textarea><br>
+      <input type="email" name="email" placeholder="Your Email" required><br>
+      <textarea name="message" placeholder="Your Message" required></textarea><br>
       <button type="submit">Send</button>
     </form>
   </section>
 
-  <!-- AI Chatbot Section -->
+  <!-- Chatbot Section -->
   <section id="chatbot">
     <h2>AI Chatbot</h2>
     <div id="chat-window">
       <div id="chat-output"></div>
-      <input type="text" id="chat-input" placeholder="Ask me anything..." aria-label="Chatbot input">
+      <input type="text" id="chat-input" placeholder="Ask me anything...">
       <button onclick="sendMessage()">Send</button>
     </div>
   </section>
@@ -106,19 +156,14 @@
           body: JSON.stringify({ message: userInput })
         });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
         const data = await response.json();
         if (data.reply) {
           chatOutput.innerHTML += `<p><strong>AI:</strong> ${data.reply}</p>`;
         } else {
-          throw new Error('No reply from AI');
+          chatOutput.innerHTML += `<p><strong>AI:</strong> Sorry, no response.</p>`;
         }
       } catch (error) {
-        chatOutput.innerHTML += `<p><strong>AI:</strong> Sorry, something went wrong. Please try again later.</p>`;
-        console.error(error);
+        chatOutput.innerHTML += `<p><strong>AI:</strong> Sorry, something went wrong.</p>`;
       }
 
       document.getElementById('chat-input').value = '';
