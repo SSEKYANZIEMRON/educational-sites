@@ -3,69 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sign Up | EduSite</title>
+  <title>Sign Up - EduSite</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f0f8ff;
-    }
-    nav {
-      background: #003366;
-      padding: 10px;
-      color: white;
-      text-align: center;
-    }
-    nav ul {
-      list-style-type: none;
+      background-color: #e6f2ff;
+      margin: 0;
       padding: 0;
     }
-    nav ul li {
-      display: inline;
-      margin: 0 10px;
+    .container {
+      max-width: 400px;
+      margin: 60px auto;
+      background-color: white;
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-    }
-    section {
-      margin-top: 40px;
+    h2 {
       text-align: center;
-    }
-    form {
-      margin-top: 20px;
+      color: #0077cc;
     }
     input, button {
+      width: 100%;
       padding: 10px;
-      margin: 5px;
-      font-size: 16px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
     button {
-      background-color: #28a745;
+      background-color: #0077cc;
       color: white;
-      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    label {
+      font-weight: bold;
+    }
+    .back-link {
+      display: block;
+      margin-top: 15px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <h1>EduSite</h1>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-    </ul>
-  </nav>
-
-  <section>
-    <h2>📧 Sign Up for Notifications</h2>
-    <p>Enter your email to receive updates about new tutorials and quizzes.</p>
+  <div class="container">
+    <h2>Create Your Account</h2>
     <form action="https://formspree.io/f/xzzrdkjk" method="POST">
-      <input type="email" name="email" placeholder="Your Email" required>
+      <label for="name">Full Name</label>
+      <input type="text" name="name" id="name" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" name="email" id="email" required />
+
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required />
+
+      <label>
+        <input type="checkbox" name="notifications" />
+        I want to receive notifications
+      </label>
+
       <button type="submit">Sign Up</button>
     </form>
-    <p>We respect your privacy. No spam ever!</p>
-  </section>
+
+    <a class="back-link" href="index.html">← Back to Home</a>
+  </div>
 
 </body>
 </html>
