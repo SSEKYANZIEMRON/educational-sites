@@ -1,58 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign Up</title>
-  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
-  <nav>
-    <h1>EduSite</h1>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="lessons.html">Lessons</a></li>
-      <li><a href="quizzes.html">Quizzes</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="chatbot.html">Chatbot</a></li>
-    </ul>
-  </nav>
-
   <h1>Sign Up</h1>
   <form id="signup-form">
-    <input type="email" id="user-email" placeholder="Enter your email" required>
+    <input type="email" id="user-email" placeholder="Enter your email" required />
     <button type="submit">Sign Up</button>
   </form>
 
   <script>
+    // Initialize EmailJS
     (function() {
-      emailjs.init("YOUR_USER_ID");  // Replace with your User ID from EmailJS
+      emailjs.init("sDsoRVNsCBzHleFl6"); // Your EmailJS Public Key
     })();
 
+    // Handle Form Submission
     document.getElementById('signup-form').addEventListener('submit', function(event) {
       event.preventDefault();
 
-      var userEmail = document.getElementById('user-email').value;
-      var verificationCode = generateVerificationCode();  // Generate a random 6-digit code
+      const userEmail = document.getElementById('user-email').value;
+      const verificationCode = generateVerificationCode();
 
-      // Send email using EmailJS
-      emailjs.send("service_vp5at2g", "YOUR_TEMPLATE_ID", {
+      // Send the specific message
+      emailjs.send("service_glhjxqk", "template_rvy4jir", {
         email: userEmail,
-        code: verificationCode,  // Send the verification code
+        code: verificationCode,
+        message: `Welcome to ssekyanzi emron education sites! Your verification code is: ${verificationCode}`
       })
       .then(function(response) {
-        console.log('SUCCESS!', response);
         alert("A verification code has been sent to your email.");
+        console.log("SUCCESS!", response);
       }, function(error) {
-        console.log('FAILED...', error);
+        alert("Oops! Something went wrong.");
+        console.error("FAILED...", error);
       });
     });
 
+    // Code Generator
     function generateVerificationCode() {
-      return Math.floor(100000 + Math.random() * 900000);  // Generates a 6-digit code
+      return Math.floor(100000 + Math.random() * 900000); // 6-digit code
     }
   </script>
-
 </body>
 </html>
