@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up | EduSite</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f8ff;
+    }
+    nav {
+      background: #003366;
+      padding: 10px;
+      color: white;
+      text-align: center;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+      margin: 0 10px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+    section {
+      margin-top: 40px;
+      text-align: center;
+    }
+    form {
+      margin-top: 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1>EduSite</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <h2>📧 Sign Up for Notifications</h2>
+    <p>Enter your email to receive updates about new tutorials and quizzes.</p>
+    <form action="https://formspree.io/f/xzzrdkjk" method="POST">
+      <input type="email" name="email" placeholder="Your Email" required>
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>We respect your privacy. No spam ever!</p>
+  </section>
+
+</body>
+</html>
