@@ -1,95 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign Up</title>
-  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      color: #333;
-      padding: 20px;
-    }
-    h1 {
+      background-color: #f0f8ff;
       text-align: center;
-      color: #4CAF50;
+      padding: 30px;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    input {
+    input, button {
       padding: 10px;
       margin: 10px;
       width: 250px;
-      border: 1px solid #ccc;
       border-radius: 5px;
+      border: 1px solid #ccc;
     }
     button {
-      padding: 10px 20px;
       background-color: #4CAF50;
       color: white;
-      border: none;
-      border-radius: 5px;
       cursor: pointer;
     }
     button:hover {
       background-color: #45a049;
     }
     .alert {
-      margin-top: 20px;
-      padding: 15px;
-      background-color: #ffcc00;
-      color: #fff;
+      display: none;
+      background: #2196F3;
+      color: white;
+      padding: 10px;
       border-radius: 5px;
-      text-align: center;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-
   <h1>Sign Up</h1>
   <form id="signup-form">
-    <input type="email" id="user-email" placeholder="Enter your email" required>
+    <input type="email" id="user-email" placeholder="Enter your email" required />
     <button type="submit">Sign Up</button>
   </form>
-
-  <div class="alert" id="notification" style="display:none;">
-    A verification code has been sent to your email.
-  </div>
+  <div class="alert" id="notification">Verification code sent!</div>
 
   <script>
-    (function() {
-      emailjs.init("sDsoRVNsCBzHleFl6");  // Your EmailJS User ID
-    })();
+    emailjs.init("sDsoRVNsCBzHleFl6"); // Your EmailJS public key
 
     document.getElementById('signup-form').addEventListener('submit', function(event) {
       event.preventDefault();
 
       var userEmail = document.getElementById('user-email').value;
-      var verificationCode = generateVerificationCode();  // Generate a random 6-digit code
+      var verificationCode = Math.floor(100000 + Math.random() * 900000);
 
-      // Send email using EmailJS
-      emailjs.send("service_glhjxqk", "template_rvy4jir", {  // Your Service ID and Template ID
+      emailjs.send("service_glhjxqk", "template_rvy4jir", {
         email: userEmail,
-        code: verificationCode,  // Send the verification code
+        code: verificationCode
       })
       .then(function(response) {
-        console.log('SUCCESS!', response);
-        document.getElementById('notification').style.display = 'block';  // Show success notification
+        console.log('SUCCESS!', response.status, response.text);
+        document.getElementById('notification').style.display = 'block';
       }, function(error) {
-        console.log('FAILED...', error);
-        alert("Sorry, something went wrong. Please try again.");
+        console.error('FAILED...', error);
+        alert("Failed to send. Check your template and service ID.");
       });
     });
-
-    function generateVerificationCode() {
-      return Math.floor(100000 + Math.random() * 900000);  // Generates a 6-digit code
-    }
   </script>
-
 </body>
 </html>
