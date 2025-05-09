@@ -2,54 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EduSite - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduSite</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script async src="https://cse.google.com/cse.js?cx=54605d62dc8fe49aa"></script>
+  <style>
+    /* Simple inline styles for demo */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8ff;
+    }
+    nav {
+      background-color: #0077cc;
+      padding: 1em;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav h1 {
+      margin: 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1em;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+    .notification-icon {
+      position: relative;
+      cursor: pointer;
+    }
+    .notification-icon::after {
+      content: "🔔";
+      font-size: 20px;
+      position: absolute;
+      top: 0;
+      right: -10px;
+    }
+    section {
+      padding: 2em;
+    }
+  </style>
 </head>
 <body>
+
   <!-- Navigation Bar -->
   <nav>
     <h1>EduSite</h1>
     <ul>
       <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
       <li><a href="#lessons">Lessons</a></li>
       <li><a href="quizzes.html">Quizzes</a></li>
       <li><a href="tutorials.html">Tutorials</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#chatbot">Chatbot</a></li>
       <li><a href="signup.html">Sign Up</a></li>
-      <li class="notification">
-        <a href="#" aria-label="Notifications">
-          <i class="fas fa-bell"></i>
-          <span class="badge">3</span>
-        </a>
-      </li>
+      <li class="notification-icon" title="Notifications"></li>
     </ul>
   </nav>
+
+  <!-- Search Section -->
+  <section id="search">
+    <h2>Search Our Site</h2>
+    <div class="gcse-search"></div>
+  </section>
 
   <!-- Home Section -->
   <section id="home">
     <h2>Welcome to EduSite!</h2>
-    <p>Learn something new every day. Explore free lessons and quizzes.</p>
-  </section>
-
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We make learning fun and easy for everyone.</p>
+    <p>Learn something new every day. Explore free lessons, quizzes, and tutorials.</p>
   </section>
 
   <!-- Lessons Section -->
   <section id="lessons">
-    <h2>Free Lessons</h2>
+    <h2>Lessons</h2>
     <ul>
-      <li><strong>Math Basics:</strong> Addition, subtraction, and more</li>
-      <li><strong>Science Facts:</strong> Learn how the world works</li>
-      <li><strong>English Skills:</strong> Grammar, writing, and reading</li>
-      <li><strong>Computer Skills:</strong> Hardware, applications, internet</li>
+      <li>Math Basics</li>
+      <li>Science Facts</li>
+      <li>English Skills</li>
+      <li>Computer Knowledge</li>
     </ul>
   </section>
 
@@ -57,8 +99,8 @@
   <section id="contact">
     <h2>Contact Us</h2>
     <form action="https://formspree.io/f/xzzrdkjk" method="POST">
-      <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email"><br>
-      <textarea name="message" placeholder="Your Message" required aria-label="Your Message"></textarea><br>
+      <input type="email" name="email" placeholder="Your Email" required /><br />
+      <textarea name="message" placeholder="Your Message" required></textarea><br />
       <button type="submit">Send</button>
     </form>
   </section>
@@ -68,15 +110,15 @@
     <h2>AI Chatbot</h2>
     <div id="chat-window">
       <div id="chat-output"></div>
-      <input type="text" id="chat-input" placeholder="Ask me anything..." aria-label="Chatbot input">
+      <input type="text" id="chat-input" placeholder="Ask me anything..." />
       <button onclick="sendMessage()">Send</button>
     </div>
   </section>
 
   <script>
     async function sendMessage() {
-      const userInput = document.getElementById('chat-input').value.trim();
-      const chatOutput = document.getElementById('chat-output');
+      const userInput = document.getElementById("chat-input").value.trim();
+      const chatOutput = document.getElementById("chat-output");
 
       if (!userInput) {
         alert("Please enter a message!");
@@ -86,28 +128,24 @@
       chatOutput.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
 
       try {
-        const response = await fetch('/api/chatbot', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: userInput })
+        const response = await fetch("/api/chatbot", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: userInput }),
         });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
 
         const data = await response.json();
         if (data.reply) {
           chatOutput.innerHTML += `<p><strong>AI:</strong> ${data.reply}</p>`;
         } else {
-          throw new Error('No reply from AI');
+          throw new Error("No reply from AI");
         }
       } catch (error) {
-        chatOutput.innerHTML += `<p><strong>AI:</strong> Sorry, something went wrong. Please try again later.</p>`;
+        chatOutput.innerHTML += `<p><strong>AI:</strong> Sorry, something went wrong.</p>`;
         console.error(error);
       }
 
-      document.getElementById('chat-input').value = '';
+      document.getElementById("chat-input").value = "";
     }
   </script>
 
