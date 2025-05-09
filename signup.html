@@ -6,80 +6,64 @@
   <title>Sign Up</title>
   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <style>
-    /* Global Styles */
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to right, #ff7e5f, #feb47b);
-      color: white;
-      margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      padding: 20px;
     }
-
     h1 {
       text-align: center;
-      padding: 30px;
-      color: #fff;
-      font-size: 36px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      color: #4CAF50;
     }
-
-    /* Form Styles */
     form {
-      width: 300px;
-      margin: 50px auto;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-
-    input[type="email"] {
-      width: 100%;
-      padding: 15px;
-      margin: 10px 0;
-      border: none;
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 250px;
+      border: 1px solid #ccc;
       border-radius: 5px;
-      font-size: 16px;
     }
-
     button {
-      width: 100%;
-      padding: 15px;
-      background-color: #ff7e5f;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
       border: none;
       border-radius: 5px;
-      color: white;
-      font-size: 18px;
       cursor: pointer;
     }
-
     button:hover {
-      background-color: #feb47b;
+      background-color: #45a049;
     }
-
-    /* Responsive Styles */
-    @media (max-width: 600px) {
-      form {
-        width: 90%;
-        padding: 15px;
-      }
-
-      h1 {
-        font-size: 28px;
-      }
+    .alert {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #ffcc00;
+      color: #fff;
+      border-radius: 5px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to Ssekyanzi Emron Education Sites!</h1>
+
+  <h1>Sign Up</h1>
   <form id="signup-form">
     <input type="email" id="user-email" placeholder="Enter your email" required>
     <button type="submit">Sign Up</button>
   </form>
 
+  <div class="alert" id="notification" style="display:none;">
+    A verification code has been sent to your email.
+  </div>
+
   <script>
     (function() {
-      emailjs.init("sDsoRVNsCBzHleFl6");  // service_glhjxqk
+      emailjs.init("sDsoRVNsCBzHleFl6");  // Your EmailJS User ID
     })();
 
     document.getElementById('signup-form').addEventListener('submit', function(event) {
@@ -89,15 +73,16 @@
       var verificationCode = generateVerificationCode();  // Generate a random 6-digit code
 
       // Send email using EmailJS
-      emailjs.send("service_glhjxqk", "template_rvy4jir", {
+      emailjs.send("service_glhjxqk", "template_rvy4jir", {  // Your Service ID and Template ID
         email: userEmail,
         code: verificationCode,  // Send the verification code
       })
       .then(function(response) {
         console.log('SUCCESS!', response);
-        alert("A verification code has been sent to your email.");
+        document.getElementById('notification').style.display = 'block';  // Show success notification
       }, function(error) {
         console.log('FAILED...', error);
+        alert("Sorry, something went wrong. Please try again.");
       });
     });
 
@@ -105,5 +90,6 @@
       return Math.floor(100000 + Math.random() * 900000);  // Generates a 6-digit code
     }
   </script>
+
 </body>
 </html>
